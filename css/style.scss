@@ -10,6 +10,11 @@ $navbar-min-item-w: 30px;
 $navbar-max-item-w: 300px;
 $navbar-min-item-h: 50px;
 $navbar-max-item-h: 100px;
+$dropdown-center-margin-mult: 1.54;
+$dropdown-length-min: 50px;
+$dropdown-length-max: 150px;
+$dropdown-width-min: 50px;
+$dropdown-width-max: 150px;
 $gap: 30px;
 $breakpoints: (xs: 480px,
     sm: 768px,
@@ -54,21 +59,22 @@ $breakpoints: (xs: 480px,
         }
 
         .navitem-#{$i}-dropdown {
-            min-width: $navbar-min-item-w;
-            max-width: $navbar-max-item-w;
+            min-width: $dropdown-width-min;
+            max-width: $dropdown-width-max;
             min-height: 0px;
             height: 0px;
+            margin-left: $dropdown-width-min * $dropdown-center-margin-mult;
             margin-top: $navdrop-corr;
             opacity: 0;
             transition: all .375s linear;
         }
 
         .navitem-#{$i}:hover  > .navitem-#{$i}-dropdown {
-            min-width: $navbar-min-item-w;
-            max-width: $navbar-max-item-w;
-            min-height: 150px;
+            min-width: $dropdown-width-min;
+            max-width: $dropdown-width-max;
+            min-height: $dropdown-length-min;
             opacity: 1;
-            height: 500px;
+            height: $dropdown-length-max;
             transition: all .375s linear;
         }
         .navitem-#{$i}:hover {
@@ -152,4 +158,5 @@ img[class*="landing_image"]{
     max-width:100%;
     min-height:0%;
     max-height: 100%;
+    height:150px;
 }

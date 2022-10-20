@@ -1,12 +1,14 @@
 /* CREDITS FOR RESPONSIVE CODE: https://gist.github.com/wiegertschouten/443f7e061d1fc656b229ac4b5b0faece */
 $columns: 12;
 $navitems: 5;
+$navitem-gap: 0.87;
+$navdrop-corr: 5.75px;
 $navbar-min-height: 50px;
 $navbar-max-height: 150px;
 $navbar-min-item-w: 30px;
 $navbar-max-item-w: 300px;
 $navbar-min-item-h: 50px;
-$navbar-max-item-h: 50px;
+$navbar-max-item-h: 100px;
 $gap: 30px;
 $breakpoints: (xs: 480px,
     sm: 768px,
@@ -37,7 +39,7 @@ $breakpoints: (xs: 480px,
 
     @for $i from 1 through $navitems {
         .navitem-#{$i} {
-            margin-left: $navbar-max-height + ($i * ($navbar-max-item-w * 0.87));
+            margin-left: $navbar-max-height + ($i * ($navbar-max-item-w * $navitem-gap));
             min-width: $navbar-min-item-w;
             min-height: $navbar-min-item-h;
             max-width: $navbar-max-item-w;
@@ -49,6 +51,29 @@ $breakpoints: (xs: 480px,
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: xx-large;
             position: absolute;
+        }
+
+        .navitem-#{$i}-dropdown {
+            min-width: $navbar-min-item-w;
+            max-width: $navbar-max-item-w;
+            min-height: 0px;
+            max-height: 0px;
+            margin-top: $navdrop-corr;
+            opacity: 0;
+            transition: all .375s linear;
+        }
+
+        .navitem-#{$i}:hover {
+            cursor: pointer;
+        }
+
+        .navitem-#{$i}:hover + .navitem-#{$i}-dropdown {
+            min-width: $navbar-min-item-w;
+            max-width: $navbar-max-item-w;
+            min-height: 100px;
+            opacity: 1;
+            max-height: 300px;
+            transition: all .375s linear;
         }
     }
 }

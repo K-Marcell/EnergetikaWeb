@@ -1,7 +1,8 @@
 /* CREDITS FOR RESPONSIVE CODE: https://gist.github.com/wiegertschouten/443f7e061d1fc656b229ac4b5b0faece */
 $columns: 12;
 $navitems: 5;
-$navitem-gap: 0.87;
+$textgroups: 3;
+$navitem-gap: 0.75;
 $navdrop-corr: 5.75px;
 $navbar-min-height: 50px;
 $navbar-max-height: 150px;
@@ -42,9 +43,8 @@ $breakpoints: (xs: 480px,
             margin-left: $navbar-max-height + ($i * ($navbar-max-item-w * $navitem-gap));
             min-width: $navbar-min-item-w;
             min-height: $navbar-min-item-h;
-            max-width: $navbar-max-item-w;
-            max-height: $navbar-max-item-h;
-            background-color: wheat;
+            width: $navbar-max-item-w;
+            height: $navbar-max-item-h;
             justify-content: center;
             text-align: center;
             align-items: center;
@@ -57,23 +57,34 @@ $breakpoints: (xs: 480px,
             min-width: $navbar-min-item-w;
             max-width: $navbar-max-item-w;
             min-height: 0px;
-            max-height: 0px;
+            height: 0px;
             margin-top: $navdrop-corr;
             opacity: 0;
             transition: all .375s linear;
         }
 
+        .navitem-#{$i}:hover  > .navitem-#{$i}-dropdown {
+            min-width: $navbar-min-item-w;
+            max-width: $navbar-max-item-w;
+            min-height: 150px;
+            opacity: 1;
+            height: 500px;
+            transition: all .375s linear;
+        }
         .navitem-#{$i}:hover {
             cursor: pointer;
         }
 
-        .navitem-#{$i}:hover + .navitem-#{$i}-dropdown {
-            min-width: $navbar-min-item-w;
-            max-width: $navbar-max-item-w;
+    }
+
+    @for $i from 1 through $textgroups{
+        .textgroup-#{$i}{
+            min-width: 100%;
+            margin-top: 1.463%;
+            width: 100%;
             min-height: 100px;
-            opacity: 1;
-            max-height: 300px;
-            transition: all .375s linear;
+            height:400px;
+            background-color: yellow;
         }
     }
 }
@@ -120,4 +131,25 @@ $width in $breakpoints {
     cursor: pointer;
     text-shadow: 2px 2px rgba(46, 46, 46, 0.13);
     box-shadow: 2px 2px rgba(46, 46, 46, 0.13);
+}
+
+.landing_image, .lp_text_r {
+    float:right;
+}
+
+.landing_image_l, .lp_text_l {
+    float:left;
+}
+
+p[class*="lp_text_"] {
+    max-width: 400px;
+    min-width:100px;
+    width:250px;
+}
+
+img[class*="landing_image"]{
+    min-width:0%;
+    max-width:100%;
+    min-height:0%;
+    max-height: 100%;
 }
